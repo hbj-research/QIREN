@@ -3,9 +3,10 @@ import torch.nn as nn
 import torch
 import math
 import numpy as np
-import qiskit.providers.aer.noise as noise
-
-
+#import qiskit.providers.aer.noise as noise
+#import qiskit_aer.noise as noise
+# from qiskit_aer.noise import NoiseModel
+# from qiskit_aer.noise.errors import depolarizing_error
 class FourierFeatures(nn.Module):
     def __init__(self, in_channels, out_channels, learnable_features=False):
         super(FourierFeatures, self).__init__()
@@ -60,11 +61,25 @@ class QuantumLayer(nn.Module):
         self.qnn = qml.qnn.TorchLayer(self.qnode, weight_shape)
 
     def forward(self, x):
+        print(f"[QuantumLayer] Input x shape: {x.shape}")
         orgin_shape = list(x.shape[0:-1]) + [-1]
         if len(orgin_shape) > 2:
             x = x.reshape((-1, self.in_features))
-        out = self.qnn(x)
-        return out.reshape(orgin_shape)
+        print(f"[QuantumLayer] Reshaped x for qnn: {x.shape}")
+        # Batch process: call qnn for each input in x
+        outs = []
+        for i in range(x.shape[0]):
+            out_i = self.qnn(x[i])
+            outs.append(out_i)
+        out = torch.stack(outs, dim=0)
+        print(f"[QuantumLayer] Output from qnn (batched): {out.shape}")
+        try:
+            out_reshaped = out.reshape(orgin_shape)
+            print(f"[QuantumLayer] Output after reshape: {out_reshaped.shape}")
+            return out_reshaped
+        except Exception as e:
+            print(f"[QuantumLayer] Reshape error: {e}")
+            raise
 
 
 class HybridLayer(nn.Module):

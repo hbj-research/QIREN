@@ -15,7 +15,7 @@ import scipy.io.wavfile as wavfile
 
 parser = ConfigArgumentParser()
 parser.add_argument('--type', type=str, default='sound')
-parser.add_argument('--epochs', type=int, default=301)
+parser.add_argument('--epochs', type=int, default=10)
 parser.add_argument('--optimizer', type=str, default='adam')
 parser.add_argument('--batch_size', type=int, default=1)
 parser.add_argument('--epoch_til_summary', type=int, default=1)
@@ -197,7 +197,7 @@ if __name__ == "__main__":
                       use_cuda=args.use_cuda)
     trainer.run()
 
-    # 可视化
+    # 可视化 visualization
     # checkpoint = torch.load("./sound/checkpoint/siren.pth")
     # model.load_state_dict(checkpoint['model_state_dict'])
     model_input, ground_truth = next(iter(dataloader))

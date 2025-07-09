@@ -1,0 +1,66 @@
+Namespace(type='sound', epochs=301, optimizer='adam', batch_size=1, epoch_til_summary=1, img_size=32, lr_scheduler='cosine', criterion='mse', use_cuda=0, learning_rate=0.03, model='hybridren', in_features=1, hidden_features=8, hidden_layers=2, first_omega_0=1, hidden_omega_0=1, spectrum_layer=2, use_noise=0)
+/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/functional.py:568: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2228.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Hybridren(
+  (net): Sequential(
+    (0): HybridLayer(
+      (clayer): Linear(in_features=1, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (1): HybridLayer(
+      (clayer): Linear(in_features=8, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (2): HybridLayer(
+      (clayer): Linear(in_features=8, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (3): Linear(in_features=8, out_features=1, bias=True)
+  )
+)
+parameters:649
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+Traceback (most recent call last):
+  File "/home/hari/QIREN-1/qinr/train.py", line 198, in <module>
+    trainer.run()
+  File "/home/hari/QIREN-1/qinr/train.py", line 88, in run
+    loss = self.train(epoch)
+  File "/home/hari/QIREN-1/qinr/train.py", line 102, in train
+    out, coords = self.model(x)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/QIREN-1/qinr/modules.py", line 112, in forward
+    output = self.net(coords)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/QIREN-1/qinr/modules.py", line 87, in forward
+    out = self.qlayer(x1)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/QIREN-1/qinr/modules.py", line 69, in forward
+    out = self.qnn(x)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/qnn/torch.py", line 404, in forward
+    results = self._evaluate_qnode(inputs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/qnn/torch.py", line 445, in _evaluate_qnode
+    return _combine_dimensions(res)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/qnn/torch.py", line 437, in _combine_dimensions
+    _res = [torch.reshape(r, (x.shape[0], -1)) for r in _res]
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/qnn/torch.py", line 437, in <listcomp>
+    _res = [torch.reshape(r, (x.shape[0], -1)) for r in _res]
+RuntimeError: shape '[1000, -1]' is invalid for input of size 8

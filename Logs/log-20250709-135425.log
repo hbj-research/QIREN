@@ -1,0 +1,179 @@
+Namespace(type='sound', epochs=301, optimizer='adam', batch_size=1, epoch_til_summary=1, img_size=32, lr_scheduler='cosine', criterion='mse', use_cuda=0, learning_rate=0.03, model='hybridren', in_features=1, hidden_features=8, hidden_layers=2, first_omega_0=1, hidden_omega_0=1, spectrum_layer=2, use_noise=0)
+/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/functional.py:568: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2228.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Hybridren(
+  (net): Sequential(
+    (0): HybridLayer(
+      (clayer): Linear(in_features=1, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (1): HybridLayer(
+      (clayer): Linear(in_features=8, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (2): HybridLayer(
+      (clayer): Linear(in_features=8, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (3): Linear(in_features=8, out_features=1, bias=True)
+  )
+)
+parameters:649
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+epoch 0, Total loss 0.183402
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+epoch 1, Total loss 0.136672
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+epoch 2, Total loss 0.108167
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+epoch 3, Total loss 0.084744
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+epoch 4, Total loss 0.068055
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+Traceback (most recent call last):
+  File "/home/hari/QIREN-1/qinr/train.py", line 198, in <module>
+    trainer.run()
+  File "/home/hari/QIREN-1/qinr/train.py", line 88, in run
+    loss = self.train(epoch)
+  File "/home/hari/QIREN-1/qinr/train.py", line 102, in train
+    out, coords = self.model(x)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/QIREN-1/qinr/modules.py", line 121, in forward
+    output = self.net(coords)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/QIREN-1/qinr/modules.py", line 96, in forward
+    out = self.qlayer(x1)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/QIREN-1/qinr/modules.py", line 72, in forward
+    out_i = self.qnn(x[i])
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/qnn/torch.py", line 404, in forward
+    results = self._evaluate_qnode(inputs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/qnn/torch.py", line 430, in _evaluate_qnode
+    res = self.qnode(**kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/workflow/qnode.py", line 882, in __call__
+    return self._impl_call(*args, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/workflow/qnode.py", line 855, in _impl_call
+    res = qml.execute(
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/workflow/execution.py", line 244, in execute
+    results = run(tapes, device, config, inner_transform)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/workflow/run.py", line 286, in run
+    results = inner_execute(tapes)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/workflow/run.py", line 251, in inner_execute
+    results = device.execute(transformed_tapes, execution_config=execution_config)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/devices/modifiers/simulator_tracking.py", line 28, in execute
+    results = untracked_execute(self, circuits, execution_config)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/devices/modifiers/single_tape_support.py", line 30, in execute
+    results = batch_execute(self, circuits, execution_config)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/logging/decorators.py", line 61, in wrapper_entry
+    return func(*args, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/devices/default_qubit.py", line 719, in execute
+    return tuple(
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/devices/default_qubit.py", line 720, in <genexpr>
+    _simulate_wrapper(
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/devices/default_qubit.py", line 1053, in _simulate_wrapper
+    return simulate(circuit, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/logging/decorators.py", line 61, in wrapper_entry
+    return func(*args, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/devices/qubit/simulate.py", line 357, in simulate
+    state, is_state_batched = get_final_state(
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/logging/decorators.py", line 61, in wrapper_entry
+    return func(*args, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/devices/qubit/simulate.py", line 190, in get_final_state
+    state = apply_operation(
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/functools.py", line 889, in wrapper
+    return dispatch(args[0].__class__)(*args, **kw)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/devices/qubit/apply_operation.py", line 232, in apply_operation
+    return _apply_operation_default(op, state, is_state_batched, debugger)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/devices/qubit/apply_operation.py", line 258, in _apply_operation_default
+    return apply_operation_einsum(op, state, is_state_batched=is_state_batched)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/devices/qubit/apply_operation.py", line 87, in apply_operation_einsum
+    affected_indices = "".join(alphabet[i] for i in op.wires)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/ops/op_math/controlled.py", line 610, in wires
+    return self.control_wires + self.target_wires
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/wires.py", line 200, in __add__
+    return Wires.all_wires([self, other])
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/pennylane/wires.py", line 466, in all_wires
+    converted_wires = (
+KeyboardInterrupt

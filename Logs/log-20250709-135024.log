@@ -1,0 +1,55 @@
+Namespace(type='sound', epochs=301, optimizer='adam', batch_size=1, epoch_til_summary=1, img_size=32, lr_scheduler='cosine', criterion='mse', use_cuda=0, learning_rate=0.03, model='hybridren', in_features=1, hidden_features=8, hidden_layers=2, first_omega_0=1, hidden_omega_0=1, spectrum_layer=2, use_noise=0)
+/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/functional.py:568: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2228.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Hybridren(
+  (net): Sequential(
+    (0): HybridLayer(
+      (clayer): Linear(in_features=1, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (1): HybridLayer(
+      (clayer): Linear(in_features=8, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (2): HybridLayer(
+      (clayer): Linear(in_features=8, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (3): Linear(in_features=8, out_features=1, bias=True)
+  )
+)
+parameters:649
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+epoch 0, Total loss 0.173436
+Traceback (most recent call last):
+  File "/home/hari/QIREN-1/qinr/train.py", line 198, in <module>
+    trainer.run()
+  File "/home/hari/QIREN-1/qinr/train.py", line 92, in run
+    torch.save({'epoch': epoch, 'model_state_dict': self.model.state_dict(),
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/serialization.py", line 377, in save
+    with _open_file_like(f, 'wb') as opened_file:
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/serialization.py", line 231, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/serialization.py", line 212, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: './checkpoint/0.pth'

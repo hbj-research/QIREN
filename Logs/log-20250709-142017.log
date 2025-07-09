@@ -1,0 +1,56 @@
+Namespace(type='sound', epochs=10, optimizer='adam', batch_size=1, epoch_til_summary=1, img_size=32, lr_scheduler='cosine', criterion='mse', use_cuda=True, learning_rate=0.03, model='hybridren', in_features=1, hidden_features=8, hidden_layers=2, first_omega_0=1, hidden_omega_0=1, spectrum_layer=2, use_noise=0)
+/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/functional.py:554: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4314.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Hybridren(
+  (net): Sequential(
+    (0): HybridLayer(
+      (clayer): Linear(in_features=1, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (1): HybridLayer(
+      (clayer): Linear(in_features=8, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (2): HybridLayer(
+      (clayer): Linear(in_features=8, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (3): Linear(in_features=8, out_features=1, bias=True)
+  )
+)
+parameters:649
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+[QuantumLayer] Input x shape: torch.Size([1, 1000, 8])
+[QuantumLayer] Reshaped x for qnn: torch.Size([1000, 8])
+[QuantumLayer] Output from qnn (batched): torch.Size([1000, 8])
+[QuantumLayer] Output after reshape: torch.Size([1, 1000, 8])
+Traceback (most recent call last):
+  File "/home/hari/QIREN-1/qinr/train.py", line 198, in <module>
+    trainer.run()
+  File "/home/hari/QIREN-1/qinr/train.py", line 88, in run
+    loss = self.train(epoch)
+  File "/home/hari/QIREN-1/qinr/train.py", line 106, in train
+    loss.backward()
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/_tensor.py", line 648, in backward
+    torch.autograd.backward(
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/autograd/__init__.py", line 353, in backward
+    _engine_run_backward(
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/autograd/graph.py", line 824, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

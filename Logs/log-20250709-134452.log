@@ -1,0 +1,9 @@
+Namespace(type='sound', epochs=301, optimizer='adam', batch_size=1, epoch_til_summary=1, img_size=32, lr_scheduler='cosine', criterion='mse', use_cuda=0, learning_rate=0.03, model='hybridren', in_features=1, hidden_features=8, hidden_layers=2, first_omega_0=1, hidden_omega_0=1, spectrum_layer=2, use_noise=0)
+Traceback (most recent call last):
+  File "/home/hari/QIREN-1/qinr/train.py", line 145, in <module>
+    dataloader = DataLoader(AudioFile('./sound/gt_bach.wav'), batch_size=args.batch_size, pin_memory=True)
+  File "/home/hari/QIREN-1/qinr/sound/data_process.py", line 19, in __init__
+    self.rate, self.data = wavfile.read(filename)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/scipy/io/wavfile.py", line 674, in read
+    fid = open(filename, 'rb')
+FileNotFoundError: [Errno 2] No such file or directory: './sound/gt_bach.wav'

@@ -1,0 +1,60 @@
+Namespace(type='sound', epochs=10, optimizer='adam', batch_size=1, epoch_til_summary=1, img_size=32, lr_scheduler='cosine', criterion='mse', use_cuda=True, learning_rate=0.03, model='hybridren', in_features=1, hidden_features=8, hidden_layers=2, first_omega_0=1, hidden_omega_0=1, spectrum_layer=2, use_noise=0)
+/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/functional.py:568: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2228.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Hybridren(
+  (net): Sequential(
+    (0): HybridLayer(
+      (clayer): Linear(in_features=1, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (1): HybridLayer(
+      (clayer): Linear(in_features=8, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (2): HybridLayer(
+      (clayer): Linear(in_features=8, out_features=8, bias=True)
+      (norm): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (qlayer): QuantumLayer(
+        (qnn): <Quantum Torch Layer: func=_circuit>
+      )
+    )
+    (3): Linear(in_features=8, out_features=1, bias=True)
+  )
+)
+parameters:649
+/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/cuda/__init__.py:145: UserWarning: 
+NVIDIA GeForce RTX 3090 with CUDA capability sm_86 is not compatible with the current PyTorch installation.
+The current PyTorch install supports CUDA capabilities sm_37 sm_50 sm_60 sm_70.
+If you want to use the NVIDIA GeForce RTX 3090 GPU with PyTorch, please check the instructions at https://pytorch.org/get-started/locally/
+
+  warnings.warn(incompatible_device_warn.format(device_name, capability, " ".join(arch_list), device_name))
+Traceback (most recent call last):
+  File "/home/hari/QIREN-1/qinr/train.py", line 198, in <module>
+    trainer.run()
+  File "/home/hari/QIREN-1/qinr/train.py", line 88, in run
+    loss = self.train(epoch)
+  File "/home/hari/QIREN-1/qinr/train.py", line 102, in train
+    out, coords = self.model(x)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/QIREN-1/qinr/modules.py", line 121, in forward
+    output = self.net(coords)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/QIREN-1/qinr/modules.py", line 94, in forward
+    x1 = self.clayer(x)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/hari/miniconda3/envs/qiren310/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: CUBLAS_STATUS_EXECUTION_FAILED when calling `cublasSgemm( handle, opa, opb, m, n, k, &alpha, a, lda, b, ldb, &beta, c, ldc)`
